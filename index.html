@@ -6,10 +6,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <!-- MATRIX BACKGROUND -->
   <canvas id="matrix"></canvas>
 
-  <!-- TERMINAL UI -->
+  <!-- SCALE SLIDER PANEL -->
+  <div class="scale-control-panel">
+    <label for="scaleRange">Scale:</label>
+    <input type="range" id="scaleRange" min="0.5" max="1.5" step="0.01" value="1">
+  </div>
+
+  <!-- TERMINAL -->
   <div class="terminal">
     <div class="bar">
       <span class="dot red"></span>
@@ -18,85 +25,122 @@
       <span class="title">xheln@linux:~</span>
     </div>
 
-    <div class="content" id="terminal-content">
-      <!-- BOOT PROMPT -->
+    <div class="content">
+
+      <!-- BOOT -->
       <div id="boot-sequence" class="tab active">
         <p>Welcome! Type <span class="accent">boot</span> to start:</p>
         <div class="prompt-line">
-          <span class="prompt">$</span> <input type="text" id="boot-input" autofocus>
+          <span class="prompt">$</span>
+          <input type="text" id="boot-input" autofocus>
         </div>
         <div id="boot-messages"></div>
       </div>
 
-      <!-- MAIN UI (hidden until boot) -->
+      <!-- MAIN UI -->
       <div id="main-ui" class="tab">
+
         <div class="menu">
           <button onclick="openTab('home')">home</button>
           <button onclick="openTab('about')">about me!!</button>
-          <button onclick="openTab('interests')">my interests!!!</button>
-          <button onclick="openTab('extras')">extras??</button>
+          <button onclick="openTab('distros')">my distros</button>
+          <button onclick="openTab('music')">music</button>
+          <button onclick="openTab('favartists')">fav artists</button>
+          <button onclick="openTab('love')">love</button>
+          <button onclick="openTab('2026')">2026</button>
         </div>
 
         <div class="content">
-          <!-- HOME -->
+
           <div id="home" class="tab active">
-            <p class="type">
-              hey!! im <span class="accent">xheln</span><br>
-              (or you may know me as yzyralsei or qwantik)
-            </p>
-            <p class="type delay">
-              if you wish to know more about me,<br>
-              press any of the buttons below ! :3
+            <p>
+              hii! im <span class="accent">xheln</span><br>
+              (or you might know me as yzyralsei, qwantik, or dani)
             </p>
             <p>
-              <span class="prompt">$</span> <span class="cursor"></span>
+              i am a 15-year-old italian from abruzzo, math & computer worm, and i use linux!<br>
+              press any of the buttons above to learn more :3
             </p>
           </div>
 
-          <!-- ABOUT -->
           <div id="about" class="tab">
-            <p><span class="prompt">$</span> whoami</p>
-            <p>xheln</p>
-
-            <p><span class="prompt">$</span> age</p>
-            <p>15</p>
-
-            <p><span class="prompt">$</span> cat about.txt</p>
+            <p><span class="prompt">$</span> personal info</p>
             <p>
-              big math & computer nerd (ask me anything!)<br>
-              im a linux poweruser btw<br>
-              professional sore in the butt
+              hii! im xheln (or you might know me as yzyralsei, qwantik, or dani),<br>
+              i am a 15-year-old italian from abruzzo,<br>
+              i am a math & computer worm, and i use linux!
             </p>
           </div>
 
-          <!-- INTERESTS -->
-          <div id="interests" class="tab">
-            <p><span class="prompt">$</span> ls interests/</p>
-            <ul>
-              <li>math</li>
-              <li>computers</li>
-              <li>linux</li>
-              <li>breaking stuff</li>
-              <li>fixing it later</li>
-            </ul>
+          <div id="distros" class="tab">
+            <p><span class="prompt">$</span> my linux experience</p>
+            <p>
+              I currently use LMDE (Linux Mint Debian Edition),<br>
+              but I have also used Gentoo, Arch Linux, Void, Alpine, LFS, and many more.
+            </p>
           </div>
 
-          <!-- EXTRAS -->
-          <div id="extras" class="tab">
-            <p><span class="prompt">$</span> neofetch</p>
-            <pre>
-user: xheln
-os: LMDE, gentoo, arch(btw), void, alpine, and so on ...
-shell: fish or zsh
-editor: neovim, neovi, micro
-status: sleepy
-            </pre>
+          <div id="music" class="tab">
+            <p><span class="prompt">$</span> music genres</p>
+            <p>
+              I listen to 90s-2000s hip-hop, some 2010s-2020s rap, breakcore, xtra raw, hardcore, rage rap
+            </p>
           </div>
+
+          <div id="favartists" class="tab">
+            <p><span class="prompt">$</span> fav artists</p>
+            <ul>
+              <li>Ye (F.K.A KanYe West)</li>
+              <li>2Pac</li>
+              <li>Ice Cube</li>
+              <li>B.I.G.</li>
+              <li>50 Cent</li>
+              <li>Ken Carson</li>
+              <li>Playboi Carti</li>
+              <li>Destroy Lonely</li>
+              <li>Homixide Gang</li>
+              <li>Vervain</li>
+              <li>So Juice</li>
+              <li>Menniel</li>
+              <li>Future</li>
+              <li>Skepta</li>
+              <li>SoFaygo</li>
+              <li>Plaqueboymaxx</li>
+              <li>Young Thug</li>
+            </ul>
+            <p>Favorites: Ye, Ken Carson, Carti, Future</p>
+          </div>
+
+          <div id="love" class="tab">
+            <p><span class="prompt">$</span> love</p>
+            <p>
+              I am taken by a beauty, 'nik0tyyn._', and I love her so so so so soooooo much!!!
+            </p>
+          </div>
+
+          <div id="2026" class="tab">
+            <p><span class="prompt">$</span> 2026</p>
+            <p>2026 is the new 2016 &gt;w&lt;</p>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 
+  <!-- MUSIC PLAYER -->
+  <div class="music-button" id="music-button">[♫]</div>
+
+  <div class="music-player" id="music-player">
+    <audio id="bg-audio" src="W95CheMac.mp3" loop></audio>
+    <div class="controls">
+      <button id="backward">[<<]</button>
+      <button id="play-pause">[>]</button>
+      <button id="forward">[>>]</button>
+    </div>
+  </div>
+
+  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>

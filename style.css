@@ -1,4 +1,10 @@
-/* BODY + MATRIX BACKGROUND */
+/* =========================
+   BASE
+========================= */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: #000;
@@ -9,100 +15,191 @@ body {
   align-items: center;
   min-height: 100vh;
   overflow: hidden;
-  position: relative;
 }
 
-/* MATRIX CANVAS */
+/* =========================
+   MATRIX
+========================= */
 #matrix {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0; /* behind everything */
+  inset: 0;
+  z-index: 0;
 }
 
-/* TERMINAL UI */
+/* =========================
+   SCALE PANEL
+========================= */
+.scale-control-panel {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 10000;
+  background: rgba(0,0,0,0.75);
+  border: 1px solid #00ff88;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  box-shadow: 0 0 15px rgba(0,255,136,0.5);
+}
+
+.scale-control-panel input {
+  accent-color: #00ff88;
+}
+
+/* =========================
+   TERMINAL
+========================= */
 .terminal {
   width: 90%;
   max-width: 750px;
-  background: rgba(0, 0, 0, 0.85); /* semi-transparent for Matrix */
+  background: rgba(0,0,0,0.85);
+  border: 1px solid #00ff88;
   border-radius: 10px;
   box-shadow: 0 0 25px rgba(0,255,136,0.7);
-  overflow: hidden;
-  position: relative;
   z-index: 1;
-  backdrop-filter: blur(2px);
-  border: 1px solid #00ff88;
+  transform-origin: top center;
+  transition: transform 0.25s ease;
 }
 
-/* TERMINAL BAR */
+/* BAR */
 .bar {
   background: #111;
   padding: 8px;
   display: flex;
   align-items: center;
 }
-.dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; }
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
 .red { background: #ff5f56; }
 .yellow { background: #ffbd2e; }
 .green { background: #27c93f; }
-.title { margin: auto; color: #888; font-size: 0.9em; }
 
-/* MENU BUTTONS */
-.menu {
-  display: flex;
-  gap: 10px;
-  padding: 10px;
-  background: #070a08;
-  border-bottom: 1px solid #0f2;
+.title {
+  margin: auto;
+  color: #888;
+  font-size: 0.9em;
 }
-.menu button {
-  background: transparent;
-  color: #00ff88;
-  border: 1px solid #00ff88;
-  padding: 6px 12px;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all 0.2s ease;
+
+/* =========================
+   CONTENT & TABS
+========================= */
+.content {
+  padding: 20px;
+  min-height: 260px;
 }
-.menu button:hover { background: #00ff88; color: #000; }
 
-/* CONTENT */
-.content { padding: 20px; min-height: 260px; }
-.tab { display: none; animation: fadeSlide 0.3s ease; }
-.tab.active { display: block; }
-@keyframes fadeSlide { from { opacity: 0; transform: translateY(5px);} to {opacity:1; transform: translateY(0);} }
+.tab {
+  display: none;
+  animation: fade 0.25s ease;
+}
 
+.tab.active {
+  display: block;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   TERMINAL TEXT
+========================= */
 .prompt { color: #00ffaa; }
 .accent { color: #00bbff; }
-.type { animation: appear 0.8s ease forwards; }
-.type.delay { animation-delay: 0.6s; }
-@keyframes appear { from { opacity: 0; } to { opacity: 1; } }
 
-/* CURSOR */
-.cursor {
-  display: inline-block;
-  width: 10px;
-  height: 1em;
-  background: #00ff88;
-  animation: blink 1s steps(2) infinite, glow 1.2s infinite alternate;
-}
-@keyframes blink { 0%, 50% { opacity: 1; } 50.1%, 100% { opacity: 0; } }
-@keyframes glow { 0% { box-shadow: 0 0 2px #00ff88; } 100% { box-shadow: 0 0 8px #00ff88; } }
-
-ul { list-style: none; padding-left: 0; }
-li::before { content: "- "; }
-pre { color: #00ff88; }
-
-/* BOOT INPUT */
 input {
   background: transparent;
   border: none;
+  outline: none;
   color: #00ff88;
   font-family: inherit;
-  font-size: 1em;
-  outline: none;
-  width: 200px;
+  width: 100%;
+}
+
+/* =========================
+   MENU
+========================= */
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.menu button {
+  background: transparent;
+  border: 1px solid #00ff88;
+  color: #00ff88;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: monospace;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.menu button:hover {
+  background: #00ff88;
+  color: #000;
+}
+
+/* =========================
+   MUSIC PLAYER
+========================= */
+.music-button {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 10000;
+  background: rgba(0,0,0,0.75);
+  border: 1px solid #00ff88;
+  color: #00ff88;
+  padding: 8px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0,255,136,0.5);
+}
+
+.music-player {
+  position: fixed;
+  bottom: 55px;
+  right: 15px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(0,0,0,0.85);
+  border: 1px solid #00ff88;
+  padding: 8px 12px;
+  border-radius: 10px;
+  z-index: 10000;
+}
+
+.music-player button {
+  background: transparent;
+  border: 1px solid #00ff88;
+  color: #00ff88;
+  font-family: monospace;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.music-player button:hover {
+  background: #00ff88;
+  color: #000;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+  .terminal {
+    width: 95%;
+  }
 }
 
