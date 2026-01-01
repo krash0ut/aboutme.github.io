@@ -1,0 +1,108 @@
+/* BODY + MATRIX BACKGROUND */
+body {
+  margin: 0;
+  background: #000;
+  font-family: "Courier New", monospace;
+  color: #00ff88;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* MATRIX CANVAS */
+#matrix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* behind everything */
+}
+
+/* TERMINAL UI */
+.terminal {
+  width: 90%;
+  max-width: 750px;
+  background: rgba(0, 0, 0, 0.85); /* semi-transparent for Matrix */
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0,255,136,0.7);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(2px);
+  border: 1px solid #00ff88;
+}
+
+/* TERMINAL BAR */
+.bar {
+  background: #111;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+.title { margin: auto; color: #888; font-size: 0.9em; }
+
+/* MENU BUTTONS */
+.menu {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: #070a08;
+  border-bottom: 1px solid #0f2;
+}
+.menu button {
+  background: transparent;
+  color: #00ff88;
+  border: 1px solid #00ff88;
+  padding: 6px 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.menu button:hover { background: #00ff88; color: #000; }
+
+/* CONTENT */
+.content { padding: 20px; min-height: 260px; }
+.tab { display: none; animation: fadeSlide 0.3s ease; }
+.tab.active { display: block; }
+@keyframes fadeSlide { from { opacity: 0; transform: translateY(5px);} to {opacity:1; transform: translateY(0);} }
+
+.prompt { color: #00ffaa; }
+.accent { color: #00bbff; }
+.type { animation: appear 0.8s ease forwards; }
+.type.delay { animation-delay: 0.6s; }
+@keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+
+/* CURSOR */
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1em;
+  background: #00ff88;
+  animation: blink 1s steps(2) infinite, glow 1.2s infinite alternate;
+}
+@keyframes blink { 0%, 50% { opacity: 1; } 50.1%, 100% { opacity: 0; } }
+@keyframes glow { 0% { box-shadow: 0 0 2px #00ff88; } 100% { box-shadow: 0 0 8px #00ff88; } }
+
+ul { list-style: none; padding-left: 0; }
+li::before { content: "- "; }
+pre { color: #00ff88; }
+
+/* BOOT INPUT */
+input {
+  background: transparent;
+  border: none;
+  color: #00ff88;
+  font-family: inherit;
+  font-size: 1em;
+  outline: none;
+  width: 200px;
+}
+

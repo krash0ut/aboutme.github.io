@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>aboot me --- xheln :3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- MATRIX BACKGROUND -->
+  <canvas id="matrix"></canvas>
+
+  <!-- TERMINAL UI -->
+  <div class="terminal">
+    <div class="bar">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="title">xheln@linux:~</span>
+    </div>
+
+    <div class="content" id="terminal-content">
+      <!-- BOOT PROMPT -->
+      <div id="boot-sequence" class="tab active">
+        <p>Welcome! Type <span class="accent">boot</span> to start:</p>
+        <div class="prompt-line">
+          <span class="prompt">$</span> <input type="text" id="boot-input" autofocus>
+        </div>
+        <div id="boot-messages"></div>
+      </div>
+
+      <!-- MAIN UI (hidden until boot) -->
+      <div id="main-ui" class="tab">
+        <div class="menu">
+          <button onclick="openTab('home')">home</button>
+          <button onclick="openTab('about')">about me!!</button>
+          <button onclick="openTab('interests')">my interests!!!</button>
+          <button onclick="openTab('extras')">extras??</button>
+        </div>
+
+        <div class="content">
+          <!-- HOME -->
+          <div id="home" class="tab active">
+            <p class="type">
+              hey!! im <span class="accent">xheln</span><br>
+              (or you may know me as yzyralsei or qwantik)
+            </p>
+            <p class="type delay">
+              if you wish to know more about me,<br>
+              press any of the buttons below ! :3
+            </p>
+            <p>
+              <span class="prompt">$</span> <span class="cursor"></span>
+            </p>
+          </div>
+
+          <!-- ABOUT -->
+          <div id="about" class="tab">
+            <p><span class="prompt">$</span> whoami</p>
+            <p>xheln</p>
+
+            <p><span class="prompt">$</span> age</p>
+            <p>15</p>
+
+            <p><span class="prompt">$</span> cat about.txt</p>
+            <p>
+              big math & computer nerd (ask me anything!)<br>
+              im a linux poweruser btw<br>
+              professional sore in the butt
+            </p>
+          </div>
+
+          <!-- INTERESTS -->
+          <div id="interests" class="tab">
+            <p><span class="prompt">$</span> ls interests/</p>
+            <ul>
+              <li>math</li>
+              <li>computers</li>
+              <li>linux</li>
+              <li>breaking stuff</li>
+              <li>fixing it later</li>
+            </ul>
+          </div>
+
+          <!-- EXTRAS -->
+          <div id="extras" class="tab">
+            <p><span class="prompt">$</span> neofetch</p>
+            <pre>
+user: xheln
+os: LMDE, gentoo, arch(btw), void, alpine, and so on ...
+shell: fish or zsh
+editor: neovim, neovi, micro
+status: sleepy
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
