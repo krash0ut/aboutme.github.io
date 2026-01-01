@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>aboot me --- xheln :3</title>
+  <!-- Cascadia Mono -->
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/cascadia-code">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,7 +19,7 @@
   </div>
 
   <!-- TERMINAL -->
-  <div class="terminal">
+  <div class="terminal" id="terminal">
     <div class="bar">
       <span class="dot red"></span>
       <span class="dot yellow"></span>
@@ -29,17 +31,16 @@
 
       <!-- BOOT -->
       <div id="boot-sequence" class="tab active">
-        <p>Welcome! Type <span class="accent">boot</span> to start:</p>
         <div class="prompt-line">
           <span class="prompt">$</span>
           <input type="text" id="boot-input" autofocus>
         </div>
+        <p class="boot-hint">type boot to load in my info!</p>
         <div id="boot-messages"></div>
       </div>
 
       <!-- MAIN UI -->
       <div id="main-ui" class="tab">
-
         <div class="menu">
           <button onclick="openTab('home')">home</button>
           <button onclick="openTab('about')">about me!!</button>
@@ -51,16 +52,8 @@
         </div>
 
         <div class="content">
-
           <div id="home" class="tab active">
-            <p>
-              hii! im <span class="accent">xheln</span><br>
-              (or you might know me as yzyralsei, qwantik, or dani)
-            </p>
-            <p>
-              i am a 15-year-old italian from abruzzo, math & computer worm, and i use linux!<br>
-              press any of the buttons above to learn more :3
-            </p>
+            <p>click the buttons above to know more about me! :3</p>
           </div>
 
           <div id="about" class="tab">
@@ -130,7 +123,6 @@
 
   <!-- MUSIC PLAYER -->
   <div class="music-button" id="music-button">[♫]</div>
-
   <div class="music-player" id="music-player">
     <audio id="bg-audio" src="W95CheMac.mp3" loop></audio>
     <div class="controls">
@@ -140,7 +132,10 @@
     </div>
   </div>
 
-  <!-- JS -->
+  <!-- GIF in basso a sinistra -->
+  <img src="https://media.tenor.com/WW4D-bhZ5qIAAAAd/snaptic-whateverthisis-shake.gif" 
+       class="bottom-left-gif" alt="gif">
+
   <script src="script.js"></script>
 </body>
 </html>

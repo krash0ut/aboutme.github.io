@@ -1,205 +1,66 @@
-/* =========================
-   BASE
-========================= */
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:#000;
+  font-family:'Cascadia Code',monospace;
+  color:#00ff88;
+  overflow:hidden;
+  height:100vh;
+  position:relative;
 }
-
-body {
-  margin: 0;
-  background: #000;
-  font-family: "Courier New", monospace;
-  color: #00ff88;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  overflow: hidden;
+#matrix{position:fixed;inset:0;z-index:0;}
+.scale-control-panel{
+  position:fixed;top:15px;right:15px;z-index:10000;
+  background:rgba(0,0,0,0.75);
+  border:1px solid #00ff88;
+  padding:10px 14px;
+  border-radius:12px;
+  font-size:0.85em;
+  box-shadow:0 0 15px rgba(0,255,136,0.5);
 }
-
-/* =========================
-   MATRIX
-========================= */
-#matrix {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
+.scale-control-panel input{accent-color:#00ff88;}
+.terminal{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(1);
+  width:90%;max-width:750px;
+  background:rgba(0,0,0,0.85);
+  border-radius:10px;
+  box-shadow:0 0 25px rgba(0,255,136,0.7);
+  z-index:10;
+  overflow:hidden;
+  transition:transform 0.25s ease;
 }
-
-/* =========================
-   SCALE PANEL
-========================= */
-.scale-control-panel {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 10000;
-  background: rgba(0,0,0,0.75);
-  border: 1px solid #00ff88;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: 0.85em;
-  box-shadow: 0 0 15px rgba(0,255,136,0.5);
+.bar{
+  background:#111;
+  padding:6px 8px;
+  display:flex;
+  align-items:center;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
 }
-
-.scale-control-panel input {
-  accent-color: #00ff88;
+.dot{
+  width:10px;height:10px;border-radius:50%;
+  margin-right:6px;flex-shrink:0;
+  box-shadow:0 0 2px rgba(0,0,0,0.5);
 }
-
-/* =========================
-   TERMINAL
-========================= */
-.terminal {
-  width: 90%;
-  max-width: 750px;
-  background: rgba(0,0,0,0.85);
-  border: 1px solid #00ff88;
-  border-radius: 10px;
-  box-shadow: 0 0 25px rgba(0,255,136,0.7);
-  z-index: 1;
-  transform-origin: top center;
-  transition: transform 0.25s ease;
-}
-
-/* BAR */
-.bar {
-  background: #111;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin-right: 6px;
-}
-
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
-
-.title {
-  margin: auto;
-  color: #888;
-  font-size: 0.9em;
-}
-
-/* =========================
-   CONTENT & TABS
-========================= */
-.content {
-  padding: 20px;
-  min-height: 260px;
-}
-
-.tab {
-  display: none;
-  animation: fade 0.25s ease;
-}
-
-.tab.active {
-  display: block;
-}
-
-@keyframes fade {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================
-   TERMINAL TEXT
-========================= */
-.prompt { color: #00ffaa; }
-.accent { color: #00bbff; }
-
-input {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #00ff88;
-  font-family: inherit;
-  width: 100%;
-}
-
-/* =========================
-   MENU
-========================= */
-.menu {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-
-.menu button {
-  background: transparent;
-  border: 1px solid #00ff88;
-  color: #00ff88;
-  padding: 4px 10px;
-  cursor: pointer;
-  font-family: monospace;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-}
-
-.menu button:hover {
-  background: #00ff88;
-  color: #000;
-}
-
-/* =========================
-   MUSIC PLAYER
-========================= */
-.music-button {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  z-index: 10000;
-  background: rgba(0,0,0,0.75);
-  border: 1px solid #00ff88;
-  color: #00ff88;
-  padding: 8px 10px;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 0 12px rgba(0,255,136,0.5);
-}
-
-.music-player {
-  position: fixed;
-  bottom: 55px;
-  right: 15px;
-  display: none;
-  flex-direction: column;
-  gap: 8px;
-  background: rgba(0,0,0,0.85);
-  border: 1px solid #00ff88;
-  padding: 8px 12px;
-  border-radius: 10px;
-  z-index: 10000;
-}
-
-.music-player button {
-  background: transparent;
-  border: 1px solid #00ff88;
-  color: #00ff88;
-  font-family: monospace;
-  cursor: pointer;
-  border-radius: 6px;
-}
-
-.music-player button:hover {
-  background: #00ff88;
-  color: #000;
-}
-
-/* =========================
-   MOBILE
-========================= */
-@media (max-width: 600px) {
-  .terminal {
-    width: 95%;
-  }
-}
+.red{background:#ff5f56;}.yellow{background:#ffbd2e;}.green{background:#27c93f;}
+.title{margin:auto;color:#888;font-size:0.9em;}
+.prompt-line{display:flex;align-items:center;gap:6px;}
+.prompt-line input{flex:1;background:transparent;border:none;outline:none;color:#00ff88;font-family:inherit;}
+.boot-hint{margin-top:6px;font-size:0.9em;color:#00bbff;}
+.content{padding:20px;min-height:260px;}
+.tab{display:none;animation:fade 0.25s ease;}
+.tab.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+.prompt{color:#00ffaa;}
+.accent{color:#00bbff;}
+.menu{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.menu button{background:transparent;border:1px solid #00ff88;color:#00ff88;padding:4px 10px;cursor:pointer;font-family:inherit;border-radius:6px;transition:all 0.2s ease;}
+.menu button:hover{background:#00ff88;color:#000;}
+.music-button{position:fixed;bottom:15px;right:15px;z-index:10000;background:rgba(0,0,0,0.75);border:1px solid #00ff88;color:#00ff88;padding:8px 10px;border-radius:12px;cursor:pointer;box-shadow:0 0 12px rgba(0,255,136,0.5);}
+.music-player{position:fixed;bottom:55px;right:15px;display:none;flex-direction:column;gap:8px;background:rgba(0,0,0,0.85);border:1px solid #00ff88;padding:8px 12px;border-radius:10px;z-index:10000;}
+.music-player button{background:transparent;border:1px solid #00ff88;color:#00ff88;font-family:inherit;cursor:pointer;border-radius:6px;}
+.music-player button:hover{background:#00ff88;color:#000;}
+.bottom-left-gif{position:fixed;bottom:15px;left:15px;width:80px;height:80px;z-index:10000;}
+@media(max-width:600px){.terminal{width:95%;}}
 
